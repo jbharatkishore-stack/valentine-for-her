@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>For Samyugtha ❤️</title>
+
+  <style>
+    :root {
+      --primary: #c9184a;
+      --secondary: #ff4d6d;
+      --bg-dark: #0b0b0b;
+      --text-light: #f8f9fa;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #1a1a1a, #000);
+      color: var(--text-light);
+      overflow-x: hidden;
+    }
+
+    section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* HERO */
+    .hero h1 {
+      font-size: 2.6rem;
+      max-width: 850px;
+      opacity: 0;
+      animation: fadeIn 2s forwards;
+    }
+
+    .hero button {
+      margin-top: 40px;
+      padding: 14px 36px;
+      font-size: 1.1rem;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      border: none;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .hero button:hover {
+      transform: scale(1.08);
+    }
+
+    /* STORY */
+    .story p {
+      font-size: 1.8rem;
+      margin: 20px 0;
+      opacity: 0;
+      animation: fadeInUp 1s forwards;
+    }
+
+    /* MEMORY CARDS */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      max-width: 900px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 30px;
+      cursor: pointer;
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      background: rgba(255,255,255,0.15);
+    }
+
+    /* QUESTION */
+    .question h1 {
+      font-size: 3rem;
+      margin-bottom: 40px;
+    }
+
+    .buttons button {
+      margin: 10px;
+      padding: 14px 36px;
+      font-size: 1.1rem;
+      border-radius: 40px;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+    }
+
+    /* FINAL */
+    .final h1 {
+      font-size: 2.4rem;
+      margin-bottom: 20px;
+    }
+
+    /* FLOATING HEARTS */
+    .heart {
+      position: fixed;
+      color: #ff4d6d;
+      animation: float 5s linear infinite;
+      font-size: 20px;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(100vh); opacity: 1; }
+      100% { transform: translateY(-10vh); opacity: 0; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div>
+      <h1>
+        Even miles apart, my heart found only one destination…<br><br>
+        <span style="color:#ff4d6d;">Samyugtha ❤️</span>
+      </h1>
+      <button onclick="nextSection('story')">Start Our Story</button>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section class="story hidden" id="story">
+    <div>
+      <p style="animation-delay:0s;">Distance tested us.</p>
+      <p style="animation-delay:1s;">Time strengthened us.</p>
+      <p style="animation-delay:2s;">Love chose us.</p>
+      <button onclick="nextSection('cards')">Continue</button>
+    </div>
+  </section>
+
+  <!-- MEMORY CARDS -->
+  <section class="hidden" id="cards">
+    <div class="cards">
+      <div class="card">Samyugtha, the way you smile — even through a screen.</div>
+      <div class="card">Late nights just to feel closer to you.</div>
+      <div class="card">Distance never changed how I feel about you.</div>
+      <div class="card">You are my favorite notification, every single day.</div>
+    </div>
+    <br><br>
+    <button onclick="nextSection('question')">One More Thing…</button>
+  </section>
+
+  <!-- QUESTION -->
+  <section class="question hidden" id="question">
+    <div>
+      <h1 id="typeText"></h1>
+      <div class="buttons">
+        <button onclick="celebrate()">YES ❤️</button>
+        <button onclick="celebrate()">Of course YES 💕</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL -->
+  <section class="final hidden" id="final">
+    <div>
+      <h1>
+        Distance means nothing<br>
+        when <span style="color:#ff4d6d;">Samyugtha</span> means everything.
+      </h1>
+      <p>Happy Valentine’s Day ❤️</p>
+    </div>
+  </section>
+
+  <script>
+    const sections = document.querySelectorAll("section");
+
+    function nextSection(id) {
+      sections.forEach(s => s.classList.add("hidden"));
+      document.getElementById(id).classList.remove("hidden");
+    }
+
+    // Typewriter effect
+    const text = "So Samyugtha… will you be my Valentine?";
+    let index = 0;
+
+    function typeWriter() {
+      if (index < text.length) {
+        document.getElementById("typeText").innerHTML += text.charAt(index);
+        index++;
+        setTimeout(typeWriter, 80);
+      }
+    }
+
+    document.getElementById("question").addEventListener("click", typeWriter, { once: true });
+
+    // Celebration hearts
+    function celebrate() {
+      nextSection("final");
+      for (let i = 0; i < 35; i++) {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = Math.random() * 20 + 16 + "px";
+        heart.innerHTML = "❤️";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
+      }
+    }
+  </script>
+
+</body>
+</html>
